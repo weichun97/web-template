@@ -6,6 +6,7 @@
 ## 项目文档
 
 - 代码生成器使用文档：[./doc/document/generate.md](doc/document/generate.md)
+- redis 使用文档：[./doc/document/redis.md](doc/document/redis.md)
 
 ## 组织结构
 
