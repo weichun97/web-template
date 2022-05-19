@@ -17,9 +17,6 @@
     <modules>
         <module>common</module>
         <module>server</module>
-        <module>common/common-generate</module>
-        <module>common/common-mybatisplus</module>
-        <module>common/common-redis</module>
     </modules>
 
     <description>后台模板项目</description>
