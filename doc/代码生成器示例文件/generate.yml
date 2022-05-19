@@ -1,0 +1,70 @@
+# 代码生成器
+chun:
+  generate:
+    template-map:
+      all:
+        template-file: poAll.ftl
+        dir: entity/po
+        suffix: .java
+        type: class
+        child:
+          mapper:
+            template-file: mapperAll.ftl
+            dir: mapper
+            suffix: Mapper.java
+            type: class
+          mapper-xml:
+            template-file: mapperXmlAll.ftl
+            dir: mapper
+            suffix: Mapper.xml
+            type: resource
+          maps:
+            template-file: mapsAll.ftl
+            dir: maps
+            suffix: Maps.java
+            type: class
+          service:
+            template-file: serviceAll.ftl
+            dir: service
+            suffix: Service.java
+            type: class
+          serviceImpl:
+            template-file: serviceImplAll.ftl
+            dir: service/impl
+            suffix: ServiceImpl.java
+            type: class
+          controller:
+            template-file: controllerAll.ftl
+            dir: controller
+            suffix: Controller.java
+            type: class
+          param:
+            template-file: paramAll.ftl
+            dir: entity/param
+            suffix: Param.java
+            type: class
+            need-table-package: true
+          vo:
+            template-file: voAll.ftl
+            dir: entity/vo
+            suffix: VO.java
+            type: class
+            need-table-package: true
+          page-param:
+            template-file: pageParamAll.ftl
+            dir: entity/param
+            suffix: PageParam.java
+            type: class
+            need-table-package: true
+          page-vo:
+            template-file: pageVOAll.ftl
+            dir: entity/vo
+            suffix: PageVO.java
+            type: class
+            need-table-package: true
+          save-update-param:
+            template-file: saveUpdateParamAll.ftl
+            dir: entity/param
+            suffix: SaveUpdateParam.java
+            type: class
+            need-table-package: true
