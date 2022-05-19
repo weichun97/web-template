@@ -7,6 +7,7 @@
 
 - 代码生成器使用文档：[./doc/document/generate.md](doc/document/generate.md)
 - redis 使用文档：[./doc/document/redis.md](doc/document/redis.md)
+- 数据库规范文档：[./doc/document/database.md](doc/document/database.md)
 
 ## 组织结构
 
