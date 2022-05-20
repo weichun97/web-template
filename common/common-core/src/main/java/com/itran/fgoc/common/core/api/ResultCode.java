@@ -26,7 +26,9 @@ public enum ResultCode implements IErrorCode {
     REMOTE_CALL_FAILED(502, "远程调用失败"),
     INSERT_ERROR(5000,"插入数据失败！"),
     UPDATE_ERROR(5001,"修改数据失败！"),
-    DELETE_ERROR(5002,"删除数据失败！");
+    DELETE_ERROR(5002,"删除数据失败！"),
+    DUPLICATE_KEY(5003,"数据已存在！"),
+    ;
 
 
 //    CODE_20101001(20101001, "航班计划详情获取失败"),
