@@ -1,4 +1,4 @@
-package com.itran.fgoc.common.common.swagger.config;
+package com.itran.fgoc.common.swagger.config;
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,6 @@ import java.util.HashSet;
  **/
 @Configuration("FgocSwaggerConfig")
 @EnableSwagger2
-//@EnableSwaggerBootstrapUI
 public class FgocSwaggerConfig {
 
     @Value("${spring.application.name}")

@@ -1,4 +1,4 @@
-package com.itran.fgoc.common;
+package com.itran.fgoc.common.generate;
 
 import com.github.weichun97.generate.autoconfigure.annotations.EnableGenerate;
 import org.springframework.context.annotation.Configuration;

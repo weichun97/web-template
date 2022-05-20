@@ -1,6 +1,6 @@
 spring:
   application:
-    name: web-template
+    name: server
   profiles:
     active: dev
 server:
