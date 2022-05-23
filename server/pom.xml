@@ -54,6 +54,10 @@
             <groupId>com.itran.fgoc</groupId>
             <artifactId>common-mybatisplus</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.itran.fgoc</groupId>
+            <artifactId>common-cors</artifactId>
+        </dependency>
 
         <!-- mysql -->
         <dependency>

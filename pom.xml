@@ -65,6 +65,11 @@
                 <artifactId>common-mybatisplus</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.itran.fgoc</groupId>
+                <artifactId>common-cors</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- lombok  -->
             <dependency>

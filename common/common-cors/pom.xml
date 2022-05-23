@@ -6,19 +6,21 @@
         <artifactId>web-template</artifactId>
         <groupId>com.itran.fgoc</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>common-cors</artifactId>
 
-    <modules>
-        <module>common-core</module>
-        <module>common-log</module>
-        <module>common-swagger</module>
-        <module>common-mybatisplus</module>
-        <module>common-redis</module>
-        <module>common-generate</module>
-        <module>common-cors</module>
-    </modules>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 </project>
