@@ -20,6 +20,6 @@ public class RegexValidator implements ConstraintValidator<Regex, Object> {
 
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
-        return object != null  && ReUtil.isMatch(regex, object.toString());
+        return object == null  || ReUtil.isMatch(regex, object.toString());
     }
 }

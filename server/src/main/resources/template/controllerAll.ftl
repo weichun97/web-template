@@ -19,7 +19,6 @@ import org.springframework.validation.annotation.Validated;
  * @date 2020/9/4
  * @description ${tableInfo.tableComment?uncap_first}
  */
-@Validated
 @RequestMapping("${tableInfo.tableNameCamelCase?uncap_first}")
 @RestController
 @Api(value = "${tableInfo.tableNameCamelCase}Controller", tags = "${tableInfo.tableComment}")
@@ -36,20 +35,20 @@ public class ${tableInfo.tableNameCamelCase}Controller {
 
     @GetMapping("page")
     @ApiOperation(value = "分页查询")
-    public Response<FgocPage<${tableInfo.tableNameCamelCase}PageVO>> ${tableInfo.tableNameCamelCase?uncap_first}Page(PageParam page, ${tableInfo.tableNameCamelCase}PageParam param) {
+    public Response<FgocPage<${tableInfo.tableNameCamelCase}PageVO>> ${tableInfo.tableNameCamelCase?uncap_first}Page(@Validated PageParam page, @Validated ${tableInfo.tableNameCamelCase}PageParam param) {
         return Response.success(service.${tableInfo.tableNameCamelCase?uncap_first}Page(page, param));
     }
 
     @PostMapping
     @ApiOperation(value = "新增")
-    public Response save(@RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param) {
+    public Response save(@Validated @RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param) {
         service.save(param);
         return Response.success();
     }
 
     @PutMapping("{id}")
     @ApiOperation(value = "修改")
-    public Response update(@RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param, @PathVariable Long id) {
+    public Response update(@Validated @RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param, @PathVariable Long id) {
         service.update(param, id);
         return Response.success();
     }

@@ -12,7 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * @author chun
@@ -35,20 +35,20 @@ public class ${tableInfo.tableNameCamelCase}Controller {
 
     @GetMapping("page")
     @ApiOperation(value = "分页查询")
-    public Response<FgocPage<${tableInfo.tableNameCamelCase}PageVO>> ${tableInfo.tableNameCamelCase?uncap_first}Page(PageParam page, @Valid ${tableInfo.tableNameCamelCase}PageParam param) {
+    public Response<FgocPage<${tableInfo.tableNameCamelCase}PageVO>> ${tableInfo.tableNameCamelCase?uncap_first}Page(@Validated PageParam page, @Validated ${tableInfo.tableNameCamelCase}PageParam param) {
         return Response.success(service.${tableInfo.tableNameCamelCase?uncap_first}Page(page, param));
     }
 
     @PostMapping
     @ApiOperation(value = "新增")
-    public Response save(@Valid @RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param) {
+    public Response save(@Validated @RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param) {
         service.save(param);
         return Response.success();
     }
 
     @PutMapping("{id}")
     @ApiOperation(value = "修改")
-    public Response update(@Valid @RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param, @PathVariable Long id) {
+    public Response update(@Validated @RequestBody ${tableInfo.tableNameCamelCase}SaveUpdateParam param, @PathVariable Long id) {
         service.update(param, id);
         return Response.success();
     }
