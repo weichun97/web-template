@@ -9,7 +9,7 @@ public interface CommonVar {
 
     String SYSTEM = "系统";
 
-    Enums SCOPE = Enums.build()
+    Enums MSG = Enums.build()
             .add(SYSTEM, "系统")
             ;
 }

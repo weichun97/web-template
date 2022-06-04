@@ -12,7 +12,7 @@ public interface PatternVar {
     String PHONE = "^1\\d{10}$";
     String PASSWORD = "^(?![A-Za-z]+$)(?![A-Z\\d]+$)(?![A-Z\\W]+$)(?![a-z\\d]+$)(?![a-z\\W]+$)(?![\\d\\W]+$)\\S{8,}$";
 
-    Enums SCOPE = Enums.build()
+    Enums MSG = Enums.build()
             .add(PHONE, "手机号")
             .add(PASSWORD, "密码")
             ;

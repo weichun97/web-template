@@ -16,7 +16,7 @@ public interface YesOrNoVar {
     int YES = 1;
 
 
-    Enums SCOPE = Enums.build()
+    Enums MSG = Enums.build()
             .add(YES, "是")
             .add(NO, "否");
 }

@@ -17,6 +17,16 @@
     </properties>
 
     <dependencies>
+        <!-- common -->
+        <dependency>
+            <groupId>com.itran.fgoc</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+        <!-- springboot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
         <!--swagger 依赖-->
         <dependency>
             <groupId>io.springfox</groupId>
