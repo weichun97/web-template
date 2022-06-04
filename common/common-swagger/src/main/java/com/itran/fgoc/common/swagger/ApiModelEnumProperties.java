@@ -8,7 +8,6 @@ import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import com.itran.fgoc.common.core.api.Enums;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -21,6 +20,7 @@ import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -120,12 +120,12 @@ public final class ApiModelEnumProperties {
 
                 // 加上枚举描述
                 Object[] fieldsValue = ReflectUtil.getFieldsValue(annotation.enumClass());
-                Enums msg = (Enums) ReflectUtil.getFieldValue(annotation.enumClass(), MSG_ENUMS_KEY);
+                Map<Object, String> msg = (Map<Object, String>) ReflectUtil.getFieldValue(annotation.enumClass(), MSG_ENUMS_KEY);
                 for (int i = 0; i < fieldsValue.length; i++) {
-                    if(fieldsValue[i] instanceof Enums){
+                    if(fieldsValue[i] instanceof Map){
                         continue;
                     }
-                    description += "  " + fieldsValue[i] + ":" + msg.name(fieldsValue[i]) + ";";
+                    description += "  " + fieldsValue[i] + ":" + msg.getOrDefault(fieldsValue[i], "") + ";";
                 }
                 return descriptions.resolve(description);
             }

@@ -1,6 +1,8 @@
 package com.itran.fgoc.common.core.var;
 
-import com.itran.fgoc.common.core.api.Enums;
+import cn.hutool.core.map.MapUtil;
+
+import java.util.Map;
 
 /**
  * @author cocoyang
@@ -15,8 +17,9 @@ public interface YesOrNoVar {
     int NO = 0;
     int YES = 1;
 
-
-    Enums MSG = Enums.build()
-            .add(YES, "是")
-            .add(NO, "否");
+    Map<Object, Object> MSG = MapUtil.builder()
+            .put(YES, "是")
+            .put(NO, "否")
+            .build()
+            ;
 }
