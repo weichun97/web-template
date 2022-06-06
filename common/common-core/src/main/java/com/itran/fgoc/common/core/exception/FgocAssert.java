@@ -1,6 +1,10 @@
 package com.itran.fgoc.common.core.exception;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.itran.fgoc.common.core.api.ResultCode;
+
+import java.util.Collection;
 
 public class FgocAssert {
     protected FgocAssert() {
@@ -48,7 +52,6 @@ public class FgocAssert {
         if (unexpected == actual) {
             fail(resultCode);
         }
-
     }
 
     public static void assertNotEquals(double unexpected, double actual, double delta, ResultCode resultCode) {
@@ -69,14 +72,36 @@ public class FgocAssert {
         if (floatIsDifferent(expected, actual, delta)) {
             fail(resultCode);
         }
-
     }
 
     public static void assertNotEquals(float unexpected, float actual, float delta, ResultCode resultCode) {
         if (!floatIsDifferent(unexpected, actual, delta)) {
             fail(resultCode);
         }
+    }
 
+    public static <T> void  assertEmpty(Collection<T> collections, ResultCode resultCode) {
+        if (!CollUtil.isEmpty(collections)) {
+            fail(resultCode);
+        }
+    }
+
+    public static <T> void  assertNotEmpty(Collection<T> collections, ResultCode resultCode) {
+        if (CollUtil.isEmpty(collections)) {
+            fail(resultCode);
+        }
+    }
+
+    public static <T> void  assertBlank(String str, ResultCode resultCode) {
+        if (!StrUtil.isBlank(str)) {
+            fail(resultCode);
+        }
+    }
+
+    public static <T> void  assertNotBlank(String str, ResultCode resultCode) {
+        if (StrUtil.isBlank(str)) {
+            fail(resultCode);
+        }
     }
 
     private static boolean doubleIsDifferent(double d1, double d2, double delta) {
