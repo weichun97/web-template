@@ -125,7 +125,7 @@ public final class ApiModelEnumProperties {
                     if(fieldsValue[i] instanceof Map){
                         continue;
                     }
-                    description += "  " + fieldsValue[i] + ":" + msg.getOrDefault(fieldsValue[i], "") + ";";
+                    description += String.format("  %s:%s;", fieldsValue[i], msg.getOrDefault(fieldsValue[i], ""));
                 }
                 return descriptions.resolve(description);
             }
