@@ -28,6 +28,7 @@ public enum ResultCode implements IErrorCode {
     UPDATE_ERROR(5001,"修改数据失败！"),
     DELETE_ERROR(5002,"删除数据失败！"),
     DUPLICATE_KEY(5003,"数据已存在！"),
+    REPEAT_SUBMIT(6001,"请勿重复提交！"),
     ;
 
 

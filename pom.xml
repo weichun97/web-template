@@ -70,6 +70,11 @@
                 <artifactId>common-cors</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.itran.fgoc</groupId>
+                <artifactId>common-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- lombok  -->
             <dependency>
