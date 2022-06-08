@@ -20,5 +20,6 @@
         <module>common-redis</module>
         <module>common-generate</module>
         <module>common-cors</module>
+        <module>common-security</module>
     </modules>
 </project>
