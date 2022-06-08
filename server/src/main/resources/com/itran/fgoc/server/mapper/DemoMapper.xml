@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itran.fgoc.server.mapper.DemoMapper">
+
+    <select id="demoPage" resultType="com.itran.fgoc.server.entity.vo.demo.DemoPageVO">
+        select
+            t1.id,
+            t1.msg,
+            t1.delete_time,
+            t1.create_time,
+            t1.update_time
+        from demo t1
+        <where>
+            delete_time = 0
+        </where>
+        order by t1.create_time desc
+    </select>
+</mapper>

@@ -1,7 +1,5 @@
 package com.itran.fgoc.common.core.aspect;
 
-import cn.hutool.core.date.DateUnit;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.json.JSONUtil;
 import com.itran.fgoc.common.core.annotation.RepeatSubmit;
@@ -21,8 +19,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
@@ -30,6 +28,7 @@ import java.util.Objects;
 public class NoRepeatSubmitAspect  {
 
    String PREVENT_DUPLICATION_PREFIX = "PREVENT_DUPLICATION_PREFIX";
+   String PREVENT_DUPLICATION_VALUE = "1";
 
    @Resource
    private RedisTemplate redisTemplate;
@@ -41,26 +40,18 @@ public class NoRepeatSubmitAspect  {
 
    @Around("preventDuplication()")
    public Object around(ProceedingJoinPoint joinPoint) {
-      Date now = new Date();
       // 缓存的 key
       String redisKey = calRedisKey(joinPoint);
+      // 过期时间
+      long expireTime = getExpireTime(joinPoint);
 
       // 无缓存：非重复请求
-      if (!redisTemplate.opsForHash().hasKey(PREVENT_DUPLICATION_PREFIX, redisKey)) {
-         return success(joinPoint, redisKey, now);
+      if (!redisTemplate.hasKey(redisKey)) {
+         return success(joinPoint, redisKey, expireTime);
       }
       // 有缓存
       else {
-         Date lastSubmitTime = (Date) redisTemplate.opsForHash().get(PREVENT_DUPLICATION_PREFIX, redisKey);
-         // 非重复请求
-         long expireTime = getExpireTime(joinPoint);
-         if(DateUtil.between(lastSubmitTime, now, DateUnit.SECOND) > expireTime){
-            return success(joinPoint, redisKey, now);
-         }
-         // 重复请求
-         else{
-            throw new ApiException(ResultCode.REPEAT_SUBMIT);
-         }
+         throw new ApiException(ResultCode.REPEAT_SUBMIT);
       }
    }
 
@@ -92,21 +83,20 @@ public class NoRepeatSubmitAspect  {
 
       // 通过前缀 + url + userId + 函数参数签名 来生成redis上的 key
       Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
-      return String.format("%s:%s:%s", url, userId, getMethodSign(method, joinPoint.getArgs()));
+      return String.format("%s:%s:%s:%s", PREVENT_DUPLICATION_PREFIX, url, userId, getMethodSign(method, joinPoint.getArgs()));
    }
 
    /**
     * 非重复请求，更新缓存并放行
     *
     * @param joinPoint
-    * @param redisKey
-    * @param redisValue
+    * @param redisKey key
+    * @param expireTime 过期时间
     * @return
     */
-   private Object success(ProceedingJoinPoint joinPoint, String redisKey, Date redisValue) {
+   private Object success(ProceedingJoinPoint joinPoint, String redisKey, long expireTime) {
       // 设置防重复操作限时标记（前置通知）
-      redisTemplate.opsForHash()
-              .put(PREVENT_DUPLICATION_PREFIX, redisKey, redisValue);
+      redisTemplate.opsForValue().set(redisKey, PREVENT_DUPLICATION_VALUE, expireTime, TimeUnit.SECONDS);
       try {
          //正常执行方法并返回
          //ProceedingJoinPoint类型参数可以决定是否执行目标方法，
