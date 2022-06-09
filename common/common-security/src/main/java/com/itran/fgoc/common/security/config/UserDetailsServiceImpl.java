@@ -5,10 +5,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @author cocoyang
@@ -20,15 +17,6 @@ import javax.annotation.Resource;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     /**
-     * 请求头里登录的信息
-     */
-    private String passwordParameter = "password";
-    private String clientId = "client_id";
-
-    @Resource
-    private PasswordEncoder passwordEncoder;
-
-    /**
      * 自定义登录
      *
      * token中不保存用户权限角色相关信息，我们把用户角色、权限放到redis中存储
@@ -37,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) {
-        return new User("admin", passwordEncoder.encode("123456"), AuthorityUtils.NO_AUTHORITIES);
+        return new User(username, "$2a$10$2MiFjiHUD63AZE8hmU4VYOGjHaFKReOJVZ0IhEnBkvK.0xeDC9Yji", AuthorityUtils.NO_AUTHORITIES);
 //        log.info("用户:{} 登录",username);
 //        User user = userDao.findByUserName(username);
 //        if(user == null){

@@ -1,35 +1,32 @@
 package com.itran.fgoc.common.security.config;
 
+import cn.hutool.json.JSONUtil;
+import com.itran.fgoc.common.core.api.Response;
+import com.itran.fgoc.common.core.api.ResultCode;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.annotation.Resource;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public JWTAuthenticationFilter jwtAuthenticationFilter(){
-        JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
-//        jwtAuthenticationFilter.setAuthenticationSuccessHandler();
-        return new JWTAuthenticationFilter();
-    }
+    @Resource
+    private JwtTokenFilter jwtTokenFilter;
 
-    /**
-     * 认证管理器
-     */
-    @Bean
     @Override
+    @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
@@ -40,26 +37,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(new UserDetailsServiceImpl());
+    }
+
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-        UsernamePasswordAuthenticationFilter usernamePasswordAuthenticationFilter = new UsernamePasswordAuthenticationFilter();
-        usernamePasswordAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
-//        usernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(authenticationManagerBean());
+        // 开启跨域,禁用csrf
+        http = http.cors().and().csrf().disable();
 
-        http.cors()
-                .and()
-             .csrf()
-                .disable()
-             .authorizeRequests()
-                .antMatchers("/doc.html", "/webjars/**", "/v2/**", "/swagger-resources", "/generate.html").permitAll()
+        // 关闭 session
+        http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
+
+        // 配置认证请求
+        http = http.authorizeRequests()
+                // 不用认证的请求
+                .antMatchers("/login").permitAll()
+                .antMatchers("/webjars/**", "/swagger-resources/**", "/v2/**", "/doc.html").permitAll()
+                .antMatchers("/generate/**", "/generate.html").permitAll()
+                // 需要认证的请求
                 .anyRequest().authenticated()
-                .and()
-            //添加自定义Filter
-            .addFilter(jwtAuthenticationFilter())
-//            .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        ;
+                .and();
 
+        // 未认证的异常请求处理
+        http = http.exceptionHandling()
+                .authenticationEntryPoint(
+                        (request, response, ex) -> {
+                            response.setHeader("Content-Type", "application/json;charset=UTF-8");
+                            response.getWriter().println(JSONUtil.toJsonStr(Response.failed(ResultCode.UNAUTHORIZED)));
+                        }
+                ).and();
 
+        // 添加 jwt 过滤器, 在认证之前执行
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
