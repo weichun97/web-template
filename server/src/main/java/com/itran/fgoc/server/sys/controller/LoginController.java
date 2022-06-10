@@ -1,7 +1,6 @@
 package com.itran.fgoc.server.sys.controller;
 
 import com.itran.fgoc.common.core.api.Response;
-import com.itran.fgoc.server.sys.entity.param.demo.DemoSaveUpdateParam;
 import com.itran.fgoc.server.sys.entity.param.login.LoginParam;
 import com.itran.fgoc.server.sys.entity.vo.login.LoginVO;
 import com.itran.fgoc.server.sys.service.LoginService;

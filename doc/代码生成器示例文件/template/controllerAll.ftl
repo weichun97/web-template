@@ -10,9 +10,9 @@ import ${packageName}.<#if module!=null && module?length gt 0>${module?trim}.</#
 import ${packageName}.<#if module!=null && module?length gt 0>${module?trim}.</#if>service.${tableInfo.tableNameCamelCase}Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import javax.annotation.Resource;
 
 
 /**
@@ -25,7 +25,7 @@ import javax.validation.Valid;
 @Api(value = "${tableInfo.tableNameCamelCase}Controller", tags = "${tableInfo.tableComment}")
 public class ${tableInfo.tableNameCamelCase}Controller {
 
-    @Autowired
+    @Resource
     private ${tableInfo.tableNameCamelCase}Service service;
 
     @GetMapping("{id}")

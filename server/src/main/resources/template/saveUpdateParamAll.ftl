@@ -20,9 +20,11 @@ public class ${tableInfo.tableNameCamelCase}SaveUpdateParam implements Serializa
 
 <#if tableInfo.columnDtos?exists && tableInfo.columnDtos?size gt 0>
     <#list tableInfo.columnDtos as columnDTO >
+        <#if columnDTO.columnName != 'id' && columnDTO.columnName != 'deleteTime' && columnDTO.columnName != 'createTime' && columnDTO.columnName != 'updateTime'>
     @ApiModelProperty(value = "${columnDTO.columnComment}", example = "")
     private ${columnDTO.javaType} ${columnDTO.columnName};
 
+        </#if>
     </#list>
 </#if>
 }

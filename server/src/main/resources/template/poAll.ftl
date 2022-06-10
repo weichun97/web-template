@@ -23,7 +23,6 @@ public class ${tableInfo.tableNameCamelCase} implements Serializable {
      * ${columnDTO.columnComment}
      */
     @TableId(type = IdType.AUTO)
-    @TableField(value = "${columnDTO.oldColumnName}")
     private ${columnDTO.javaType} ${columnDTO.columnName};
 
         <#elseif columnDTO.columnName == 'deleteTime'>
