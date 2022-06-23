@@ -20,7 +20,6 @@
 package com.itran.fgoc.common.swagger;
 
 import com.google.common.base.Optional;
-import com.itran.fgoc.common.swagger.config.FgocSwaggerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.core.annotation.Order;
@@ -30,11 +29,12 @@ import springfox.documentation.spi.schema.ModelPropertyBuilderPlugin;
 import springfox.documentation.spi.schema.contexts.ModelPropertyContext;
 import springfox.documentation.spring.web.DescriptionResolver;
 import springfox.documentation.swagger.common.SwaggerPluginSupport;
+import springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration;
 
 import static com.itran.fgoc.common.swagger.ApiModelEnumProperties.*;
 import static springfox.documentation.schema.Annotations.findPropertyAnnotation;
 
-@ConditionalOnBean(FgocSwaggerConfig.class)
+@ConditionalOnBean(Swagger2DocumentationConfiguration.class)
 @Component
 @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER)
 public class ApiModelEnumPropertyPropertyBuilder implements ModelPropertyBuilderPlugin {
