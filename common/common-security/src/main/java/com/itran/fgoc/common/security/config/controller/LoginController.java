@@ -1,9 +1,9 @@
-package com.itran.fgoc.server.sys.controller;
+package com.itran.fgoc.common.security.config.controller;
 
 import com.itran.fgoc.common.core.api.Response;
-import com.itran.fgoc.server.sys.entity.param.login.LoginParam;
-import com.itran.fgoc.server.sys.entity.vo.login.LoginVO;
-import com.itran.fgoc.server.sys.service.LoginService;
+import com.itran.fgoc.common.security.config.param.LoginParam;
+import com.itran.fgoc.common.security.config.service.LoginService;
+import com.itran.fgoc.common.security.config.vo.LoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;

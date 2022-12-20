@@ -1,4 +1,4 @@
-package com.itran.fgoc.server.sys.entity.vo.login;
+package com.itran.fgoc.common.security.config.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "com.itran.fgoc.server.sys.entity.vo.login.LoginVO")
+@ApiModel(value = "com.itran.fgoc.common.security.config.param.vo.LoginVO")
 public class LoginVO {
 
     @ApiModelProperty(value = "token", required = true)

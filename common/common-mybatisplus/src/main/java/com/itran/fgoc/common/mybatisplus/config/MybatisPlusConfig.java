@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @author
  */
 @Configuration
-@MapperScan(basePackages = {"com.itran.fgoc.**.mapper"})
+@MapperScan(basePackages = {"com.itran.fgoc.**.dao"})
 public class MybatisPlusConfig {
 
 	@Bean

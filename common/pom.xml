@@ -18,7 +18,6 @@
         <module>common-swagger</module>
         <module>common-mybatisplus</module>
         <module>common-redis</module>
-        <module>common-generate</module>
         <module>common-cors</module>
         <module>common-security</module>
     </modules>

@@ -55,7 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 不用认证的请求
                 .antMatchers("/login").permitAll()
                 .antMatchers("/webjars/**", "/swagger-resources/**", "/v2/**", "/doc.html").permitAll()
-                .antMatchers("/generate/**", "/generate.html").permitAll()
                 // 需要认证的请求
                 .anyRequest().authenticated()
                 .and();

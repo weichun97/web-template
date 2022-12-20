@@ -1,4 +1,4 @@
-package com.itran.fgoc.server.sys.entity.param.login;
+package com.itran.fgoc.common.security.config.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,7 +7,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 @Data
-@ApiModel(value = "com.itran.fgoc.server.sys.entity.param.login.LoginParam")
+@ApiModel(value = "com.itran.fgoc.common.security.config.param.LoginParam")
 public class LoginParam {
 
     @NotBlank(message = "用户名不能为空")

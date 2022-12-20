@@ -1,15 +1,14 @@
-package com.itran.fgoc.server.sys.service.impl;
+package com.itran.fgoc.common.security.config.service.impl;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.itran.fgoc.common.security.config.JwtTokenFilter;
-import com.itran.fgoc.server.sys.entity.param.login.LoginParam;
-import com.itran.fgoc.server.sys.entity.vo.login.LoginVO;
-import com.itran.fgoc.server.sys.service.LoginService;
+import com.itran.fgoc.common.security.config.param.LoginParam;
+import com.itran.fgoc.common.security.config.service.LoginService;
+import com.itran.fgoc.common.security.config.vo.LoginVO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

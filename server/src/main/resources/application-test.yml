@@ -2,7 +2,6 @@ spring:
   jackson:
     serialization: { WRITE_DATES_AS_TIMESTAMPS: true }
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root

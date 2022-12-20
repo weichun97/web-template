@@ -44,10 +44,6 @@
         </dependency>
         <dependency>
             <groupId>com.itran.fgoc</groupId>
-            <artifactId>common-generate</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.itran.fgoc</groupId>
             <artifactId>common-log</artifactId>
         </dependency>
         <dependency>
@@ -62,10 +58,10 @@
             <groupId>com.itran.fgoc</groupId>
             <artifactId>common-redis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.itran.fgoc</groupId>
-            <artifactId>common-security</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.itran.fgoc</groupId>-->
+<!--            <artifactId>common-security</artifactId>-->
+<!--        </dependency>-->
 
         <!-- mysql -->
         <dependency>
@@ -93,12 +89,6 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-        </dependency>
-
-        <!-- 代码生成器 -->
-        <dependency>
-            <groupId>com.github.weichun97</groupId>
-            <artifactId>generate-springboot-start</artifactId>
         </dependency>
     </dependencies>
 
